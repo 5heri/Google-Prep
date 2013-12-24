@@ -6,12 +6,12 @@ public class Main {
 
 	public static void main(String[] args) {
 		Node n1 = new Node(1);
-		Node n2 = new Node(2);
+		Node n2 = new Node(11);
 		Node n3 = new Node(1);
-		Node n4 = new Node(4);
+		Node n4 = new Node(9);
 		Node n5 = new Node(5);
 		Node n6 = new Node(6);
-		Node n7 = new Node(7);
+		Node n7 = new Node(16);
 		Node n8 = new Node(4);
 		
 		n1.setNext(n2);
@@ -38,7 +38,7 @@ public class Main {
 		Node x = findKtoLast(n1, 2);
 		System.out.println(x.getValue());
 		
-		deleteCurrent(n5);
+		//deleteCurrent(n5);
 		
 		root = n1;
 		while (root != null) {
@@ -47,8 +47,48 @@ public class Main {
 		}
 		System.out.println();
 		
+		root = partitionAround(n1, 5);
+		while (root != null) {
+			System.out.print(root.getValue() + " ");
+			root = root.getNext();
+		}
+		System.out.println();
+		
 		
 
+	}
+	
+	private static Node partitionAround(Node node, int x) {
+		Node headFst = null;
+		Node tailFst = null;
+		Node headSnd = null;
+		Node tailSnd = null;
+		
+		while (node != null) {
+			
+			Node next = node.getNext();
+			node.setNext(null);
+			if (node.getValue() < x) {
+				if (headFst == null) {
+					headFst = node;
+					tailFst = headFst;
+				} else {
+					tailFst.setNext(node);
+					tailFst = tailFst.getNext();
+				}
+			} else {
+				if (headSnd == null) {
+					headSnd = node;
+					tailSnd = headSnd;
+				} else {
+					tailSnd.setNext(node);
+					tailSnd = tailSnd.getNext();
+				}
+			}
+			node = next;
+		}
+		tailFst.setNext(headSnd);
+		return headFst;
 	}
 	
 	// Will not work if last element is to be deleted.
