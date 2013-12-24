@@ -26,15 +26,60 @@ public class Main {
 		
 		
 		
-		removeDup(n1);
+		//removeDup(n1);
 		Node root = n1;
 		
 		while (root != null) {
 			System.out.print(root.getValue() + " ");
 			root = root.getNext();
 		}
+		System.out.println();
+		
+		Node x = findKtoLast(n1, 2);
+		System.out.println(x.getValue());
+		
+		deleteCurrent(n5);
+		
+		root = n1;
+		while (root != null) {
+			System.out.print(root.getValue() + " ");
+			root = root.getNext();
+		}
+		System.out.println();
+		
 		
 
+	}
+	
+	// Will not work if last element is to be deleted.
+	private static boolean deleteCurrent(Node node) {
+		if (node == null || node.getNext() == null) {
+			return false;
+		}
+		node.setValue(node.getNext().getValue());
+		node.setNext(node.getNext().getNext());
+		return true;
+	}
+	
+	private static Node findKtoLast(Node node, int k) {
+		Node fst = node;
+		Node snd = node;
+		
+		if (node == null) {
+			return null;
+		}
+		
+		for (int i = 1; i <= k; i++) {
+			fst = fst.getNext();
+		}
+		
+		while (fst.getNext() != null) {
+			fst = fst.getNext();
+			snd = snd.getNext();
+		}
+		
+		return snd;
+		
 	}
 	
 	private static void removeDup(Node node) {
