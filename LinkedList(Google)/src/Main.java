@@ -58,6 +58,7 @@ public class Main {
 
 	}
 	
+	//REMINDER: the first element in the 2nd list is not the pivot
 	private static Node partitionAround(Node node, int x) {
 		Node headFst = null;
 		Node tailFst = null;
