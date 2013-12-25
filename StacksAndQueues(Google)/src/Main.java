@@ -1,7 +1,6 @@
 
 public class Main {
 
-	
 	//Stack working the way it should.
 	public static void main(String[] args) throws Exception {
 		ArrayStack as = new ArrayStack();
@@ -214,7 +213,4 @@ public class Main {
 		System.out.println(as.pop(1));
 
 	}
-	
-	
-
 }
