@@ -47,6 +47,4 @@ public class Node {
 		return this.getValue() == compare.getValue();
 	}
 	
-	
-
 }
