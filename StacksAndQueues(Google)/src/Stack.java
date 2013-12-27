@@ -11,6 +11,12 @@ public class Stack {
 		this.capacity = capacity;
 	}
 	
+	public Stack() {
+		this.top = null;
+		this.size = 0;
+		this.capacity = Integer.MAX_VALUE;
+	}
+	
 	public int size() {
 		return size;
 	}
