@@ -7,6 +7,10 @@ public class BinaryTree {
 		this.root = root;
 	}
 	
+	public BinaryTree() {
+		this.root = null;
+	}
+
 	public boolean isEmpty() {
 		return root == null;
 	}
@@ -34,7 +38,39 @@ public class BinaryTree {
 		return node;
 	}
 	
+	public void preOrderDisplay() {
+		preOrderDisplay(root);
+	}
 	
+	public void inOrderDisplay() {
+		inOrderDisplay(root);
+	}
 	
-
+	public void postOrderDisplay() {
+		postOrderDisplay(root);
+	}
+	
+	private void preOrderDisplay(Node node) {
+		if (node != null) {
+			System.out.print(node.getValue() + " ");
+			preOrderDisplay(node.getLeft());
+			preOrderDisplay(node.getRight());
+		}
+	}
+	
+	private void inOrderDisplay(Node node) {
+		if (node != null) {
+			inOrderDisplay(node.getLeft());
+			System.out.print(node.getValue() + " ");
+			inOrderDisplay(node.getRight());
+		}
+	}
+	
+	private void postOrderDisplay(Node node) {
+		if (node != null) {
+			postOrderDisplay(node.getLeft());
+			postOrderDisplay(node.getRight());
+			System.out.print(node.getValue() + " ");
+		}
+	}
 }
