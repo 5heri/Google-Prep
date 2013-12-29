@@ -26,10 +26,64 @@ public class MainBinaryTree {
 		ArrayList<LinkedList<Node>> lists = createLists(newRoot);
 		displayLists(lists);
 		
-		System.out.println(isBST(newRoot));
+		//System.out.println(isBST(newRoot));
+		
+		NodeWithParent node1 = new NodeWithParent(15, null);
+		NodeWithParent node2 = new NodeWithParent(7, node1);
+		NodeWithParent node3 = new NodeWithParent(3, node2);
+		NodeWithParent node4 = new NodeWithParent(13, node2);
+		NodeWithParent node5 = new NodeWithParent(2, node3);
+		NodeWithParent node6 = new NodeWithParent(4, node3);
+		NodeWithParent node7 = new NodeWithParent(10, node4);
+		NodeWithParent node8 = new NodeWithParent(14, node4);
+		NodeWithParent node9 = new NodeWithParent(1, node5);
+		NodeWithParent node10 = new NodeWithParent(8, node7);
+		NodeWithParent node11 = new NodeWithParent(9, node10);
+		
+		node1.setLeft(node2);
+		node2.setLeft(node3);
+		node2.setRight(node4);
+		node3.setLeft(node5);
+		node3.setRight(node6);
+		node4.setLeft(node7);
+		node4.setRight(node8);
+		node5.setLeft(node9);
+		node7.setLeft(node10);
+		node10.setRight(node11);
+		
+		System.out.println("Succ: " + nextNode(node2).getValue());
+		System.out.println("Succ: " + nextNode(node9).getValue());
+		System.out.println("Succ: " + nextNode(node8).getValue());
+		System.out.println("Succ: " + nextNode(node4).getValue());
 		
 		System.out.println("END");
 
+	}
+	
+	private static NodeWithParent nextNode(NodeWithParent node) {
+		if (node == null) {
+			return null;
+		} 
+		if (node.getRight() != null) {
+			return findLeftMost(node.getRight());
+		}
+		NodeWithParent parent = node.getParent();
+		while (parent != null && parent.getRight() == node) {
+			node = parent;
+			parent = parent.getParent();
+		}
+		return node.getParent();
+		
+	}
+	
+	private static NodeWithParent findLeftMost(NodeWithParent node) {
+		if (node == null) {
+			return null;
+		}
+		while (node.getLeft() != null) {
+			node = node.getLeft();
+		}
+		return node;
 	}
 	
 	private static boolean isBST(Node node) {
@@ -40,7 +94,6 @@ public class MainBinaryTree {
 		if (node == null) {
 			return true;
 		}
-		
 		if (node.getValue() > min && node.getValue() <= max
 				&& isBST(node.getLeft(), min, node.getValue())
 				&& isBST(node.getRight(), node.getValue(), max)) {
