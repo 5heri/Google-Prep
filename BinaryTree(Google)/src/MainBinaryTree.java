@@ -78,9 +78,38 @@ public class MainBinaryTree {
 		
 		findPaths(newRoot, 4);
 		System.out.println();
+		System.out.println("*************************");
+		
+		int[] testNotSorted = {5, 4, 2, 7, 1, 6, 12, 2, 13};
+		int[] testSorted = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+		Node notSorted = balancedBT(testNotSorted);
+		Node sorted = balancedBT(testSorted);
+		System.out.println("Not Sorted: " + isBalanced(notSorted));
+		System.out.println("Sorted: " + isBalanced(sorted));
 		
 		System.out.println("END");
 	}
+	
+	/****************************************************/
+	
+	private static Node balancedBT(int[] array) {
+		return balancedBT(array, 0, array.length - 1);
+	}
+	
+	private static Node balancedBT(int[] array, int min, int max) {
+		if (max < min) {
+			return null;
+		}
+		
+		int mid = (min + max)/2;
+		Node node = new Node(array[mid]);
+		node.setLeft(balancedBT(array, min, mid - 1));
+		node.setRight(balancedBT(array, mid + 1, max));
+		
+		return node; 
+	}
+	/****************************************************/
+
 	
 	private static void findPaths(Node node, int sum) {
 		if (node == null) {
