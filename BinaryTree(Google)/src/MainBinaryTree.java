@@ -87,10 +87,50 @@ public class MainBinaryTree {
 		System.out.println("Not Sorted: " + isBalanced(notSorted));
 		System.out.println("Sorted: " + isBalanced(sorted));
 		
+		
+		Node nt1 = new Node(8);
+		Node nt2 = new Node(3);
+		Node nt3 = new Node(12);
+		Node nt4 = new Node(2);
+		Node nt5 = new Node(6);
+		Node nt6 = new Node(10);
+		Node nt7 = new Node(15);
+		Node nt8 = new Node(4);
+
+		nt1.setLeft(nt2);
+		nt1.setRight(nt3);
+		nt2.setLeft(nt4);
+		nt2.setRight(nt5);
+		nt3.setLeft(nt6);
+		nt3.setRight(nt7);
+		nt5.setLeft(nt8);
+		
+		displayLists(createLists(nt1));
+		
+		System.out.println(findCeil(nt1, 13));
+		System.out.println(findCeil(nt1, 4));
+		System.out.println(findCeil(nt1, 8));
+		
 		System.out.println("END");
 	}
 	
 	/****************************************************/
+	
+	private static int findCeil(Node node, int key) {
+		return findCeil(node, key, Integer.MIN_VALUE);
+	}
+	
+	private static int findCeil(Node node, int key, int currentCeil) {
+		if (node == null) {
+			return currentCeil;
+		} else {
+			if (key >= node.getValue()) {
+				return findCeil(node.getRight(), key, currentCeil);
+			} else {
+				return findCeil(node.getLeft(), key, node.getValue());
+			}
+		}
+	}
 	
 	private static Node balancedBT(int[] array) {
 		return balancedBT(array, 0, array.length - 1);
