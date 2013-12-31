@@ -38,8 +38,8 @@ public class Main {
 		return pascalNumber1(rows - 1, cols - 1) + pascalNumber1(rows - 1, cols);
 	}
 	
-	public static void printPascalRecursion1(int maxRows)
-    {
+	private static void printPascalRecursion1(int maxRows)
+	{
         for (int i = 1; i <= maxRows; i++)
         {
             for (int j = 0; j < i; j++)
