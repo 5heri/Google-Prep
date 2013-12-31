@@ -107,9 +107,13 @@ public class MainBinaryTree {
 		
 		displayLists(createLists(nt1));
 		
-		System.out.println(findCeil(nt1, 13));
-		System.out.println(findCeil(nt1, 4));
-		System.out.println(findCeil(nt1, 8));
+		int x = findCeil(nt1, 13);
+		int y = findCeil(nt1, 4);
+		int z = findCeil(nt1, 8);
+		
+		System.out.println(x);
+		System.out.println(y);
+		System.out.println(z);
 		
 		System.out.println("END");
 	}
