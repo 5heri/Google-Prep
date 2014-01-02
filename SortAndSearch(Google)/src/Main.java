@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -24,7 +25,103 @@ public class Main {
 		for (int i = 0; i < strings.length; i++) {
 			System.out.print(strings[i] + " ");
 		}
+		System.out.println();
+		
+		int[] c = {5,6,2,-1,7,5,6,2,9,4};
+		mergeSort(c);
+		for (int i = 0; i < c.length; i++) {
+			System.out.print(c[i] + " ");
+		}
+		System.out.println();
+		int[] d = {5,6,2,-1,7,5,6,2,9,4};
+		quickSort(d);
+		for (int i = 0; i < d.length; i++) {
+			System.out.print(d[i] + " ");
+		}
+		
+		LinkedList<Integer> queue = new LinkedList<Integer>();
+		//queue.
 
+	}
+	
+	private static void quickSort(int[] array) {
+		quickSort(array, 0, array.length - 1);
+	}
+	
+	private static void quickSort(int[] array, int left, int right) {
+		int index = partition(array, left, right);
+		if (left < index - 1) {
+			quickSort(array, left, index - 1);
+		}
+		if (index < right) {
+			quickSort(array, index, right);
+		}
+	}
+	
+	private static int partition(int[] array, int left, int right) {
+		int pivot = array[left + ((right - left) / 2)];
+		while (left <= right) {
+			while (array[left] < pivot) {
+				left++;
+			}
+			while (array[right] > pivot) {
+				right--;
+			}
+			if (left <= right) {
+				swap(array, left, right);
+				left++;
+				right--;
+			}
+		}
+		return left;
+	}
+	
+	private static void swap(int[] array, int index1, int index2) {
+		int tmp = array[index2];
+		array[index2] = array[index1];
+		array[index1] = tmp;
+	}
+	
+	private static void mergeSort(int[] array) {
+		int[] helper = new int[array.length];
+		mergeSort(array, helper, 0, array.length - 1);
+	}
+	
+	private static void mergeSort(int[] array, int[] helper, int low, int high) {
+		if (low < high) {
+			// To prevent overflow
+			int mid = low + ((high - low) / 2);
+			mergeSort(array, helper, low, mid);
+			mergeSort(array, helper, mid + 1, high);
+			merge(array, helper, low, mid, high);
+		}
+	}
+	
+	private static void merge(int[] array, int[] helper, int low, int mid, int high) {
+		
+		for (int i = low; i <= high; i++) {
+			helper[i] = array[i];
+		}
+		
+		int helperLeft = low;
+		int helperRight = mid + 1;
+		int current = low;
+		
+		while (helperLeft <= mid && helperRight <= high) {
+			if (helper[helperLeft] <= helper[helperRight]) {
+				array[current] = helper[helperLeft];
+				helperLeft++;
+			} else {
+				array[current] = helper[helperRight];
+				helperRight++;
+			}
+			current++;
+		}
+		
+		int remaining = mid - helperLeft;
+		for (int i = 0; i <= remaining; i++) {
+			array[current + i] = helper[helperLeft + i];
+		}
 	}
 	
 	private static void pairAnagram(String[] strings) {
