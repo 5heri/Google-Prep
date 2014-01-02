@@ -9,32 +9,51 @@ public class Main {
 
 	public static void main(String[] args) {
 		int[] array = { 1, 5, 7, 8, 19, 21 };
-		int indexRec = BSrecursive(array, 7);
-		int indexIte = BSiterative(array, 7);
-		System.out.println(indexRec);
-		System.out.println(indexIte);
+		//int indexRec = BSrecursive(array, 7);
+		//int indexIte = BSiterative(array, 7);
+		//System.out.println(indexRec);
+		//System.out.println(indexIte);
 
-		int n = findKthMax(
-				Arrays.asList(new Integer[] { 21, 5, 23, 7, 19, 24 }), 2);
-		System.out.println(n);
+		//int n = findKthMax(
+		//		Arrays.asList(new Integer[] { 21, 5, 23, 7, 19, 24 }), 2);
+		//System.out.println(n);
 		int[] arrayX = { 21, 5, 23, 7, 19, 24 };
 		//int index = findNthLargest(arrayX, 2);
 		//System.out.println(arrayX[index]);
-		System.out.println(findNthLargestSorting(arrayX, 2));
+		//System.out.println(findNthLargestSorting(arrayX, 2));
 		
 		char[] stringX = "abcd".toCharArray();
 		char[] stringY = "abcde".toCharArray();
-		reverse(stringX, 0, stringX.length - 1);
-		reverse(stringY, 0, stringY.length - 1);
-		System.out.println(stringX);
-		System.out.println(stringY);
+		//reverse(stringX, 0, stringX.length - 1);
+		//reverse(stringY, 0, stringY.length - 1);
+		//System.out.println(stringX);
+		//System.out.println(stringY);
 		
 		char[] arrayC = {'a','b','c',' ', 'd', 'e', 'f', 'g'};
 		char[] arrayD = {'a','b','c',' ', 'd', 'e', 'f', 'g', ' ', 'h', 'i', 'j', 'k', 'l'};
-		reverseWords(arrayC);
-		System.out.println(arrayC);
-		reverseWords(arrayD);
-		System.out.println(arrayD);
+		//reverseWords(arrayC);
+		//System.out.println(arrayC);
+		//reverseWords(arrayD);
+		//System.out.println(arrayD);
+		
+		System.out.println("/*******************");
+		int[] arrayInt = {1,2,2,2,2};
+		deleteDuplicate(arrayInt);
+		
+	}
+	
+	private static void deleteDuplicate(int[] inputArray) {
+		boolean[] present_set = new boolean[256];
+		List<Integer> listOfInt = new ArrayList<Integer>();
+		for (int i = 0; i < inputArray.length; i++) {
+			if (!present_set[inputArray[i]]) {
+				listOfInt.add(inputArray[i]);
+				present_set[inputArray[i]] = true;
+			}
+		}
+		for (Integer n : listOfInt) {
+			System.out.print(n + " ");
+		}
 	}
 	
 	private static void reverseWords(char[] string) {
